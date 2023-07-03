@@ -1,0 +1,74 @@
+.formulario{
+    width: 700px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    padding: 20px 50px 20px 50px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.letra{
+    font-size: x-large;
+    color: whitesmoke;
+}
+
+img{
+    width: 70px;
+    height: 70px;
+    padding-bottom: 0px;
+    border-radius: 100px;
+    background-color: #8282d4;
+}
+
+
+
+.mensajeError{
+    text-align: center;
+    width: 150px;
+    margin: auto;
+}
+
+.mensajeExito{
+    text-align: center;
+    width: 150px;
+    margin: auto;
+}
+
+.botones{
+    background-color: #8282d4;
+    width: 100px;
+    margin: auto;
+}
+
+input{
+    text-align: center;
+}
+
+.campo{
+    width: 50%;
+    align-items: center;
+    margin: auto;
+}
+header{
+    max-height: 120px;
+}
+
+.image-cards{
+    width: 150px;
+    height: 150px;
+    border-radius: 200px;
+}
+
+.texto{
+    text-align:left;
+}
+
+.campoBloqueado{
+    background-color:#BBBBBB;
+}
+
+.a{
+    width:auto;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="UTF-8">
+    <title>Modificar Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link th:href="@{/css/mod_perfiles.css}" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <header th:replace="/fragments/header :: header"> </header>
+
+      <div class="container-fluid m-5 contenedor">
+        <form class="formulario" th:action="@{/usuario/modificarPerfilUsuario/__${usuario.id}__}"  method="POST">
+          <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+            <div class="card-body">
+              <h5 class="card-title">Error 👎</h5>
+              <p class="card-text" th:text="${error}"></p>
+            </div>
+          </div>
+          <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+            <div class="card-body">
+              <h5 class="card-title">Exito!</h5>
+              <p class="card-text" th:text="${exito}"></p>
+          </div>
+      </div>
+      <br>
+      <h2 class="mb-2">Modificar Perfil</h2>
+      <br>
+
+       <div class="form-group my-3">
+        <label class="col-form-label col-sm-2" for="nombre">Nombre:</label>
+        <input type="text" class="form-control texto" name="nombre" id="nombre" th:value="${usuario.nombre}">
+       </div>
+
+        <div class="form-group my-3">
+          <label class="col-form-label col-sm-2" for="apellido">Apellido:</label>
+          <input type="text" class="form-control texto" name="apellido" id="apellido" th:value="${usuario.apellido}">
+        </div>
+
+         <div class="form-group my-3">
+           <label class="col-form-label col-sm-2" for="telefono">Telefono:</label>
+           <input type="text" class="form-control texto" name="telefono" id="telefono" th:value="${usuario.telefono}">
+         </div>
+
+          <div class="form-group my-3">
+            <label class="col-form-label col-sm-2">Email:</label>
+            <label class="form-control campoBloqueado" th:text="${usuario.email}"></label>
+          </div>
+
+
+          <button type="submit" class="btn btn-primary mt-3 botones">Modificar</button>
+
+       </form>
+
+        <section class=" text-center container">
+          <div class="row mt-3">
+            <div class="divVolver">
+              <a th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/inicio}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+            </div>
+            <div class="divVolver">
+              <a th:if="${!session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/iniciado/__${session.usuariosesion.id}__-__${session.usuariosesion.rol}__}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

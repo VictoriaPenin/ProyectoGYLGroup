@@ -1,0 +1,67 @@
+
+.grupobotones{
+
+    color: white;
+}
+
+.botones{
+    background-color: #8282d4;
+    font-size: 20px;
+}
+
+
+.row{
+    align-items: center;
+
+}
+
+.letra{
+    font-size: x-large;
+    color: whitesmoke;
+}
+
+img{
+    width: 70px;
+    height: 70px;
+    padding-bottom: 0px;
+    border-radius: 100px;
+
+}
+.rounded-image{
+    width: 150px;
+    height:150px;
+}
+.tarjeta1{
+    margin-top: 10%;
+    margin-left: 25%;
+    width: 250px;
+    cursor: default;
+    transition: all 400ms ease;
+    text-align: center;
+    background-color: rgba(235, 215, 205, 0.8);
+    color: black;
+
+
+}
+.tarjeta2{
+    margin-top: 10%;
+    margin-left: 10%;
+    width: 250px;
+    cursor: default;
+    transition: all 400ms ease;
+    text-align: center;
+    background-color: rgba(235, 215, 205, 0.8);
+    color:black;
+}
+
+.tarjeta1:hover{
+    transform: translateY(-10%);
+
+}
+.tarjeta2:hover{
+    transform: translateY(-10%);
+
+}
+header{
+    max-height: 120px;
+}

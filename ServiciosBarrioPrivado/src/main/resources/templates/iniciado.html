@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
+<head th:replace="/fragments/head :: head"> </head>
+<body>
+<header th:replace="/fragments/header :: header"> </header>
+
+<div class="main-container">
+  <main>
+    <div id="myCarousel" class="carousel slide carousel-custom" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner" >
+        <div class="carousel-item active" style="background-color: rgba(2,65,165,0.73) ;">
+          <img class="bd-placeholder-img" src="https://drive.google.com/uc?id=1aK65g40pRarMVpNmqj3avEnygmKHCUmZ" width="180px" height="400%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="400%" fill="var(--bs-secondary-color)" /></svg>
+          <div class="container" >
+            <div class="carousel-caption text-start" >
+              <h1 class="textcar">Estas a un click de hacer tu vida mas simple</h1>
+              <p></p>
+              <!--                            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>-->
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" style="background-color: rgba(145,23,23,0.73);"  >
+          <div>
+            <img class="bd-placeholder-img" src="https://drive.google.com/uc?id=1G6TNR_3-Phfxvx1QxL_nG3eEqico2rz2" width="180px"  height="400%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <rect width="200%" height="400%" fill="var(--bs-secondary-color)"/></img>
+            <div class="container">
+              <div class="carousel-caption" >
+                <h1 >Si sos proveedor, ¡no pierdas mas tiempo!</h1>
+
+                <p><a class="btn btn-lg btn-primary" th:href="@{/registrar}" > Registrate! </a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item"style="background-color:rgba(206,130,31,0.52);">
+          <img class="bd-placeholder-img" src="https://drive.google.com/uc?id=1Vh_8QWUIuyWEme8hSLkzddtluA4tAyN_"   width="200px" height="400%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="400%" fill="var(--bs-secondary-color)"/>
+          <div class="container">
+            <div class="carousel-caption ">
+              <h1 style="align-self: center">Mira los comentarios sobre los proveedores antes de elegir</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <div>
+        <h1 style="color: #2b353a; padding-top: 5%">Bienvenido Nuevamente <span th:text="${usuario.getNombreCompleto()}"/></h1>
+      </div>
+
+
+      <div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-4"  th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}">
+          <!--                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(&#45;&#45;bs-secondary-color)"/></svg>-->
+          <img class="rounded-image" src="https://drive.google.com/uc?id=1hJ65ZDYFEt5G5U1fbKnkEaVR9T46Jwrg" alt="usuario">
+          <h2 class="fw-normal">Listado de usuarios</h2>
+          <p></p>
+          <p><a class="btn btn-secondary botones" th:href="@{/usuario/listar}">Ver Detalles &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4" th:if="${usuario.rol.toString().equals('USER') || session.usuariosesion.rol.toString().equals('ADMIN')}">
+          <img class="rounded-image" src="https://drive.google.com/uc?id=1cmb9ITlL4Pf2AUEVMKFvTAsogeBpRKpq" alt="proveedor">
+          <h2 class="fw-normal">Listado de Proveedores</h2>
+          <p></p>
+          <p><a class="btn btn-secondary botones" th:href="@{/proveedor/listar}">Ver Detalles &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4" th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}" >
+          <img class="rounded-image" src="https://drive.google.com/uc?id=1i0RZhyOdMk0bzUmcqxev0AOnXlhSuH8a" alt="trabajos" style="background-color: lightgray">
+          <h2 class="fw-normal">Listado de Trabajos</h2>
+          <p><a class="btn btn-secondary botones" th:href="@{/trabajo/listar}">Ver Detalles &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4" th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}" >
+            <img class="rounded-image" src="https://drive.google.com/uc?id=1i0RZhyOdMk0bzUmcqxev0AOnXlhSuH8a" alt="trabajos" style="background-color: lightgray">
+            <h2 class="fw-normal">Crear nuevas Categorias de Servicios</h2>
+            <p><a class="btn btn-secondary botones" th:href="@{/admin/listarCategorias}">Comenzar &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+
+
+          <div class="col-lg-4" th:if="${usuario.rol.toString().equals('USER')}">
+            <img class="rounded-image" src="https://drive.google.com/uc?id=1i0RZhyOdMk0bzUmcqxev0AOnXlhSuH8a" alt="trabajos" style="background-color: lightgray">
+            <h2 class="fw-normal">Mis Trabajos Solicitados</h2>
+            <p><a class="btn btn-secondary botones" th:href="@{/trabajo/listarPorUsuario/__${usuario.id}__}">Ver Detalles &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4" th:if="${usuario.rol.toString().equals('USER')}">
+            <img class="rounded-image" src="https://drive.google.com/uc?id=1i0RZhyOdMk0bzUmcqxev0AOnXlhSuH8a" alt="trabajos" style="background-color: lightgray">
+            <h2 class="fw-normal">Mis Trabajos Finalizados</h2>
+            <p><a class="btn btn-secondary botones" th:href="@{/trabajo/listarPorUsuarioFinalizado/__${usuario.id}__}">Ver Detalles &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+
+
+
+
+          <div class="opciones-proveedor row" th:if="${usuario.rol.toString().equals('PROVEEDOR')}" >
+            <div class="col-lg-4"  >
+              <img class="rounded-image" src="https://drive.google.com/uc?id=1i0RZhyOdMk0bzUmcqxev0AOnXlhSuH8a" alt="trabajos" style="background-color: lightgray">
+              <h2 class="fw-normal">Mis Trabajos Pendientes</h2>
+              <p><a class="btn btn-secondary botones" th:href="@{/trabajo/listarPorProveedorPendiente/__${usuario.id}__}">Ver Detalles &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4" >
+              <img class="rounded-image" src="https://drive.google.com/uc?id=1i0RZhyOdMk0bzUmcqxev0AOnXlhSuH8a" alt="trabajos" style="background-color: lightgray">
+              <h2 class="fw-normal">Mis Trabajos Finalizados</h2>
+              <p><a class="btn btn-secondary botones" th:href="@{/trabajo/listarPorProveedorFinalizado/__${usuario.id}__}">Ver Detalles &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+        </div>
+      </div><!-- /.row -->
+
+      <!-- START THE FEATURETTES -->
+    <div th:if="${!session.usuariosesion.rol.toString().equals('ADMIN')}">
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading fw-normal lh-1">Bienvenidos a Service +  </h2>
+          <br>
+          <p class="lead">En Service + nos dedicamos a facilitar la comunicación y contratación de servicios entre los usuarios que viven en barrios cerrados y los proveedores. Sabemos lo importante que es tener acceso a profesionales confiables y de calidad, y por eso hemos creado una plataforma que simplifica este proceso.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="https://drive.google.com/uc?id=1TP9Yk6GAfD3HLk8dZcHmeXtI7L8VjDYM" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em"></text></svg>
+
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+          <h2 class="featurette-heading fw-normal lh-1"> Utiliza nuestra plataforma </h2>
+          <br>
+          <p class="lead"> Nuestro objetivo es conectar de manera eficiente a los residentes de barrios cerrados con una amplia variedad de proveedores de servicios, desde plomeros y electricistas hasta jardineros y personal de limpieza. Ya no tienes que perder tiempo buscando referencias o preguntando en tu comunidad, en Service + encontrarás todo lo que necesitas en un solo lugar.</p>
+        </div>
+        <div class="col-md-5 order-md-1">
+          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="https://drive.google.com/uc?id=1BqAJJCM3R_OF1xswb7DQIut_Sfuge5F9" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em"></text></svg>
+
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading fw-normal lh-1"> Si sos proveedor, te conectamos con nuevos clientes</h2>
+          <br>
+          <p class="lead">Al unirte a Service +, podrás crear un perfil completo que destaque tus habilidades, experiencia y referencias. Los usuarios podrán encontrar fácilmente tu perfil y leer las reseñas y calificaciones de otros clientes satisfechos, lo que les dará confianza en tu trabajo.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="https://drive.google.com/uc?id=1Ymg53jA86L_bfwZSajopqF_87BY1pEj3"  width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em"></text></svg>
+
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+    </div>
+      <!-- /END THE FEATURETTES -->
+
+    <!-- /.container -->
+
+
+    <!-- FOOTER -->
+
+    <!--    BOTON FIXED PARA VOLVER AL INICIO
+                <div style="position: fixed; bottom: 150px; right: 30px;">-->
+
+    <!--            <a href="#inicio" class="btn btn-success">Volver al Inicio</a>-->
+    <!--        </div>-->
+
+      </div>
+    </div>
+  </main>
+
+
+  <div class="row" id="footer" >
+    <div >
+      <footer th:replace="/fragments/footer :: footer"> </footer>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>

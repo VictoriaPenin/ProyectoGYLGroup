@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Calificar Trabajo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link th:href="@{/css/mod_usuario.css}" rel="stylesheet" />
+    <link th:href="@{/css/calificacionTrabajo.css}" rel="stylesheet" />
+
+</head>
+<body>
+<header th:replace="/fragments/header :: header"> </header>
+
+<div class="container">
+    <form th:action="@{/trabajo/calificar/__${trabajo.id}__}" class="formulario" method="post">
+
+        <input hidden th:value="${trabajo.id}" name="id">
+
+        <div class="form-group">
+            <h3> Calificar un Trabajo</h3>
+
+            <ul>
+                <li>FECHA: <span th:text="${trabajo.fecha}"></span></li>
+                <li>PROVEEDOR: <span th:text="${trabajo.proveedor.getNombreCompleto()}"></span> </li>
+                <li>CATEGORIA DE SERVICIO: <span th:text="${trabajo.categoria.nombre}"></span> </li>
+                <li>OBSERVACIONES: <span th:text="${trabajo.detalles}"></span>  </li>
+            </ul>
+            <label for="calif"> Por Favor indique el puntaje que le otorga al proveedor del trabajo: </label>
+            <div class="form-group my-3 seleccion">
+
+                <div id="calif"  class="rating">
+                    <input type="radio" id="star5" name="calificacion" value="5">
+                    <label for="star5">&#9733;</label>
+                    <input type="radio" id="star4" name="calificacion" value="4">
+                    <label for="star4">&#9733;</label>
+                    <input type="radio" id="star3" name="calificacion" value="3">
+                    <label for="star3">&#9733;</label>
+                    <input type="radio" id="star2" name="calificacion" value="2">
+                    <label for="star2">&#9733;</label>
+                    <input type="radio" id="star1" name="calificacion" value="1">
+                    <label for="star1">&#9733;</label>
+                </div>
+
+            </div>
+            <div class="form-group my-3 seleccion">
+                <label for="comentarios"> Comentarios adicionales acerca del trabajo: </label>
+                <input type="text" name="comentarios" id="comentarios">
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3 botones">Calificar</button>
+
+
+
+
+    </form>
+    <section class=" text-center container">
+        <div class="row mt-3">
+            <div class="divVolver">
+                <a th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/inicio}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+            </div>
+            <div class="divVolver">
+                <a th:if="${!session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/iniciado/__${session.usuariosesion.id}__-__${session.usuariosesion.rol}__}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

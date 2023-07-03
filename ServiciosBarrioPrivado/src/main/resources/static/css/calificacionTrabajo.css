@@ -1,0 +1,20 @@
+.rating {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    text-align: center;
+}
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.rating label {
+    display: inline-block;
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.rating input[type="radio"]:checked ~ label {
+    color: gold;
+}

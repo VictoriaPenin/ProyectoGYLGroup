@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de trabajos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link th:href="@{/css/index.css}" rel="stylesheet" />
+
+</head>
+<body>
+<header th:replace="/fragments/header :: header"> </header>
+
+
+<div class="container m-5" >
+
+  <form class="formulario" th:if="${finalizado == null}" th:action="@{/trabajo/listarPorEstado/__${session.usuariosesion.id}__-__${session.usuariosesion.rol}__}"  method="POST">
+    <div class="form-group my-3">
+      <label for="estado-filtrar" style="display: inline; font-weight: bold">Seleccione un Estado para filtrar los trabajos: </label>
+      <select name="estado" id="estado-filtrar">
+
+        <option>Todos</option>
+
+        <option th:each="est : ${estados}"
+                th:value="${est.toString()}"
+                th:text="${est.toString()}"
+        />
+      </select>
+      <button type="submit" class="botones">Filtrar</button>
+    </div>
+
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Fecha</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Proveedor</th>
+        <th scope="col">Tipo de Servicio</th>
+        <th scope="col">Detalles</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Comentarios</th>
+        <th scope="col">Calificacion</th>
+        <th scope="col">Acciones</th>
+        <th th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}"></th>
+
+
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr th:each="tra : ${trabajos}">
+        <th scope="row" th:text="${tra.fecha}"></th>
+        <td th:text="${tra.cliente.getNombreCompleto()}"></td>
+        <td th:text="${tra.proveedor.getNombreCompleto()}"></td>
+        <td th:text="${tra.categoria.nombre}"></td>
+        <td th:text="${tra.detalles}"></td>
+        <td th:text="${tra.estado}"></td>
+        <td th:text="${tra.comentario}"></td>
+        <td>
+          <span th:if="${tra.calificacion == 0}"> Sin calificacion </span>
+          <span th:if="${tra.calificacion != 0}" th:text="${tra.calificacion}"></span>
+        </td>
+        <td th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}">
+          <a th:href= "@{/trabajo/modificar/__${tra.id}__}"><i class="fas fa-feather-alt">  </i> Modificar </a>
+        </td>
+        <td th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}">
+          <a th:href= "@{/trabajo/borrar/__${tra.id}__}"><i class="fas fa-feather-alt">  </i> Borrar </a>
+        </td>
+        <td th:if="${session.usuariosesion.rol.toString().equals('PROVEEDOR') && tra.estado.toString().equals('PENDIENTE')}">
+          <a th:href= "@{/trabajo/confirmar/__${tra.id}__}"><i class="fas fa-feather-alt">  </i> Cambiar Estado </a>
+        </td>
+        <td th:if="${session.usuariosesion.rol.toString().equals('USER') && tra.estado.toString().equals('FINALIZADO') && tra.calificacion == 0}">
+          <a th:href= "@{/trabajo/calificar/__${tra.id}__}"><i class="fas fa-feather-alt">  </i> Calificar </a>
+        </td>
+
+      </tr>
+
+    </tbody>
+  </table>
+
+  <section class=" text-center container">
+    <div class="row mt-3">
+      <div class="divVolver">
+        <div class="divVolver" th:if="${session.usuariosesion != null}">
+          <div class="divVolver">
+            <a th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/inicio}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+          </div>
+          <div class="divVolver">
+            <a th:if="${!session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/iniciado/__${session.usuariosesion.id}__-__${session.usuariosesion.rol}__}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+          </div>
+        </div>
+        <div class="divVolver" th:if="${session.usuariosesion == null}">
+          <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+        </div>
+
+        <a th:if="${session.usuariosesion.rol.toString().equals('USER')}" th:href="@{/trabajo/registrar/__${session.usuariosesion.id}__}" class="btn btn-secondary my-2 botonVolver botones">Solicitar un Trabajo</a>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
+

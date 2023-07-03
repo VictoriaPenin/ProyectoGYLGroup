@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Perfil Proveedor con comentarios</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link th:href="@{/css/index.css}" rel="stylesheet" />
+
+
+</head>
+
+<body>
+<header th:replace="/fragments/header :: header"> </header>
+<div class="container-fluid contenedor">
+
+
+
+    <div class="form-group my-3">
+      <h2 class="card-title">Perfil del Proveedor </h2>
+    </div>
+
+    <div class="form-group my-3 campo">
+      <img th:if="${proveedor.imagen != null}" class="image-cards" th:src="@{/pictures/__${proveedor.imagen}__}">
+      <img th:if="${proveedor.imagen == null}"  class="image-cards" src="https://drive.google.com/uc?id=1cmb9ITlL4Pf2AUEVMKFvTAsogeBpRKpq">
+      <ul>
+        <li>NOMBRE: <span th:text="${proveedor.nombre}"></span></li>
+        <li>APELLIDO: <span th:text="${proveedor.apellido}"></span> </li>
+        <li>EMAIL: <span th:text="${proveedor.email}"></span> </li>
+        <li>TELEFONO: <span th:text="${proveedor.telefono}"></span> </li>
+        <li>CATEGORIA DE SERVICIO: <span th:text="${proveedor.categoriaServicio.nombre}"></span> </li>
+        <li>PRECIO POR HORA: <span th:text="${proveedor.precioPorHora}"></span></li>
+        <li>CALIFICACION: <span th:text="${proveedor.calificacion}"></span></li>
+      </ul>
+    </div>
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div th:each="res : ${resultados}"  class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 th:if="${res.calificacion != 0}">CALIFICACION: <span  th:text="${res.calificacion}"></span></span></h5>
+              <h5 th:if="${res.calificacion == 0}"><span  style="font-weight: normal"> No registra calificaciones</span></span></h5>
+              <p th:text="${res.comentario}">  </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <section class=" text-center container">
+      <div class="divVolver">
+        <a th:href="@{/proveedor/listar}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+      </div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+</body>
+</html>

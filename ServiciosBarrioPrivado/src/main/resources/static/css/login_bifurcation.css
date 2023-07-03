@@ -1,0 +1,76 @@
+.container{
+    padding-top: 5%;
+
+
+}
+.formulario {
+    width: 40%;
+    margin: 0 auto; /* Agrega este estilo para centrar horizontalmente */
+    background-color: lightgray;
+    align-items: center;
+}
+
+
+.grupobotones{
+
+    color: white;
+}
+
+.botones{
+    background-color: #8282d4;
+    font-size: 20px;
+}
+
+
+.row{
+    align-items: center;
+
+}
+
+.letra{
+    font-size: x-large;
+    color: whitesmoke;
+}
+
+img{
+    width: 70px;
+    height: 70px;
+    padding-bottom: 0px;
+    border-radius: 100px;
+
+}
+.rounded-image{
+    width: 150px;
+    height:150px;
+}
+.tarjeta1{
+    margin-left: 25%;
+    width: 250px;
+    cursor: default;
+    transition: all 400ms ease;
+    text-align: center;
+    background-color: rgba(235, 215, 205, 0.8);
+
+
+
+}
+.tarjeta2{
+    margin-left: 5%;
+    width: 250px;
+    cursor: default;
+    transition: all 400ms ease;
+    text-align: center;
+    background-color: rgba(235, 215, 205, 0.8);
+}
+
+.tarjeta1:hover{
+    transform: translateY(-10%);
+
+}
+.tarjeta2:hover{
+    transform: translateY(-10%);
+
+}
+header{
+    max-height: 120px;
+}

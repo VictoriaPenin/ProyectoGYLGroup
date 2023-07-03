@@ -1,0 +1,239 @@
+.letra{
+
+}
+.img-header{
+    width: 70px;
+    height: 70px;
+    padding-bottom: 0px;
+    border-radius: 100px;
+    background-color: #8282d4;
+}
+
+.rounded-image{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+}
+.image-cards{
+    width: 40px;
+    height: 40px
+}
+.botones{
+    background-color: #8282d4;
+    color: white;
+}
+
+
+.botonesp{
+    background-color: #8282d4;
+    margin-left: 35%;
+    margin-top: 10%;
+
+}
+header{
+    max-height: 120px;
+}
+.row {
+    padding-bottom: 10%;
+}
+
+.main-container {
+    background-color: #E6E6FA;
+}
+
+.carousel-caption {
+
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.textcar {
+    text-align: center;
+}
+
+.featurette{
+    padding-bottom: 150px;
+}
+
+.featurette-heading {
+    font-weight: bold;
+    font-size: 50px; /* Ajusta el tamaño de fuente según tus necesidades */
+}
+.lead{
+    font-size: 26px;
+    margin-top: 15%;
+    margin-right: 15%;
+
+}
+
+.titulo{
+    margin-bottom: 40px;
+    font-size: 50px;
+}
+.row.proov {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh; /* Ajusta el valor según tus necesidades */
+    background-color: rgba(235, 215, 215, 0.8);
+}
+
+.card-image{
+    display: flex;
+    margin-left: 40%;
+    margin-top: 15%;
+    height: 160px; /* Establecer una altura fija para las imágenes */
+    object-fit: cover;
+    border-radius: 8px;
+
+    width: 300px; /* Cambia el valor según el tamaño deseado */
+    height: 300px; /* Cambia el valor según el tamaño deseado */
+}
+
+.listado{
+
+    display: flex;
+    margin-left: 20%;
+    margin-top: 10%;
+
+}
+
+.text-start{
+    font-size: 25px;
+    margin-top: 10%;
+    margin-right: 5%;
+}
+
+
+.inicio{
+    width: 150%;
+    margin-top: 20%;
+    margin-right: 20%;    }
+
+
+
+h1{
+    color: #D8E3E9FF;
+}
+
+
+.text-container {
+    margin-left: 10px; /* Ajusta el valor según tus necesidades */
+}
+
+.container-card{
+    align-items: center;
+}
+
+.cards-wrappers {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+
+
+}
+
+.demo-card {
+    position: relative;
+    width: 220px; /* Aumentar el ancho de las tarjetas */
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    flex: 1;
+    background-color: #B0C4DE;
+
+}
+
+.demo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: #ccc;
+}
+
+.index-wrapper {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-images {
+
+    height: 160px; /* Establecer una altura fija para las imágenes */
+    object-fit: cover;
+    border-radius: 8px;
+
+    width: 200px; /* Cambia el valor según el tamaño deseado */
+    height: 200px; /* Cambia el valor según el tamaño deseado */
+}
+
+.card-title {
+    margin-bottom: 5px;
+}
+
+.card-description {
+    font-style: italic;
+}
+.item-1{
+    border-color: black;
+}
+.item-2{
+    border-color: black;
+}
+.item-3{
+    border-color: black;
+}
+.item-4{
+    border-color: black;
+}
+h1{
+    color: black;
+    text-align: center;
+    padding-top: 180px;
+}
+
+
+
+.banner-section {
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+
+}
+
+.banner {
+    width: 100%;
+    display: block;
+}
+
+.banner-content {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-80%, -50%);
+    text-align: left;
+    color: white;
+
+
+}
+
+.hero-title {
+    font-size: 60px;
+    font-weight: bold;
+    display: flex;
+}
+
+.subtitle {
+    font-size: 25px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+
+}

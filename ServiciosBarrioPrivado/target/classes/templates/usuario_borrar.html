@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Borrando un Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link th:href="@{/css/formulario.css}" rel="stylesheet" />
+</head>
+<body>
+<header th:replace="/fragments/header :: header"> </header>
+
+<div class="container">
+    <form th:action="@{/usuario/confirmarBorrar/__${usuario.id}__}" class="formulario" method="post">
+
+        <input hidden th:value="${usuario.id}" name="id">
+
+        <div class="form-group">
+            <h3> Borrar Usuario</h3>
+            <label th:text="${usuario.getNombreCompleto()}" name="nombre"  class="mb-2"></label>
+            <ul>
+                <li>EMAIL: <span th:text="${usuario.email}"></span></li>
+                <li>TELEFONO: <span th:text="${usuario.telefono}"></span> </li>
+            </ul>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3 botones">Borrar</button>
+
+    </form>
+    <section class=" text-center container">
+        <div class="row mt-3">
+            <div class="divVolver">
+                <a th:href="@{/usuario/listar}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

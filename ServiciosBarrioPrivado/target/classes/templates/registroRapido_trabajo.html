@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar Trabajo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link th:href="@{/css/registro_proveedor.css}" rel="stylesheet" />
+
+</head>
+<body>
+<header class="p-3 text-bg-dark">
+  <div class="header-container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <!--            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">-->
+      <!--                <img src="../static/assets/imagenes/Logo.png" alt="logo" width="100" height="90">SERVICE+-->
+      <!--            </a>-->
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a th:href="@{/}" class="nav-link px-2 text-secondary logo"><img class="img-header" src="https://drive.google.com/uc?id=17FvOE5zIHqZJNz-XgZhKY-irwDM2GeB2" alt="logo"><b class="letra">  SERVICE+</b></a></li>
+
+      </ul>
+
+      <div class="text-end" sec:authorize!="isAuthenticated()">
+        <button type="button" class="btn btn-outline-light me-2 botones"><a th:href="@{/login}" style="color:#d8e3e9"  class="nav-link px-2 text-secondary">Iniciar Sesión</a></button>
+        <button type="button" class="btn btn-warning botones"><a th:href="@{/registrar}" style="color:#d8e3e9" class="nav-link px-2 text-secondary">Registrarse</a></button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<div class="container-fluid contenedor">
+
+  <form class="shadow p-3 mb-5 bg-body-tertiary rounded formulario" th:action="@{/trabajo/registro}"  method="POST">
+
+    <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+      <div class="card-body">
+        <h5 class="card-title">Error 👎</h5>
+        <p class="card-text" th:text="${error}"></p>
+      </div>
+    </div>
+    <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+      <div class="card-body">
+        <h5 class="card-title">Exito!</h5>
+        <p class="card-text" th:text="${exito}"></p>
+      </div>
+    </div>
+    <h2 class="mb-2">Registrar un Trabajo</h2>
+    <div class="form-group my-3 seleccion">
+      <label> Cliente: <span style="font-weight:bolder;"  th:text="${cliente.getNombreCompleto()}"></span></label>
+      <input name="idCliente" hidden th:value="${cliente.id}">
+    </div>
+
+    <div class="form-group my-3 campo">
+      <label for="fecha"> Seleccione una fecha</label>
+      <input type="date" class="form-control" name="fecha" id="fecha">
+    </div>
+    <div class="form-group my-3 seleccion">
+      <label> Categoria: <span style="font-weight:bolder;"  th:text="${categoriaServicio.nombre}"></span></label>
+      <input name="idCategoria" hidden th:value="${categoriaServicio.id}">
+    </div>
+
+
+    <div class="form-group my-3 seleccion">
+      <label> Proveedor: <span style="font-weight:bolder;"  th:text="${proveedor.getNombreCompleto()}"></span></label>
+      <input name="idProveedor" hidden th:value="${proveedor.id}">
+    </div>
+
+    <label for="detalles"> Ingrese detalles del trabajo solicitado</label>
+    <div class="form-group my-3 campo">
+      <input type="text" class="form-control" name="detalles" id="detalles">
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3 boton">Registrar</button>
+  </form>
+
+
+
+  <section class=" text-center container">
+    <div class="row mt-2">
+      <div class="divVolver">
+        <a th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/inicio}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+      </div>
+      <div class="divVolver">
+        <a th:if="${!session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/iniciado/__${session.usuariosesion.id}__-__${session.usuariosesion.rol}__}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Lista de Proveedores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link th:href="@{/css/list_proveedores.css}" rel="stylesheet" />
+  </head>
+
+  <body>
+
+    <header th:replace="/fragments/header :: header"> </header>
+
+    <div class="container m-10" >
+      <form class="formularioLista" th:action="@{/proveedor/listarPorCategoria}"  method="POST">
+        <div class="form-group my-3">
+          <label for="categoria-filtrar" style="display: inline; font-weight: bold">Filtrar por categoría: </label>
+          <select class="select-css" name="categoria" id="categoria-filtrar">
+            <option>Todos</option>
+            <option th:each="cat : ${categoriaServicio}"
+                    th:value="${cat.nombre}"
+                    th:text="${cat.nombre}"
+                    th:selected="${categoriaSeleccionada == cat}"
+            />
+          </select>
+          <button type="submit" class="botones btn btn-primary">Filtrar</button>
+    </div>
+      </form>
+
+     <div class="vista-admin" th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}">
+       <table class="table">
+         <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Precio Por Hora</th>
+            <th scope="col">Categoria de Servicio</th>
+            <th scope="col">Calificacion</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+<!--      <th th:if="${session.usuariosesion.rol.toString().equals('USER')}"></th>-->
+          </tr>
+         </thead>
+
+        <tbody th:each="prov : ${proveedores}">
+          <tr>
+            <th scope="row" th:text="${prov.nombre}"></th>
+            <td th:text="${prov.apellido}"></td>
+            <td th:text="${prov.email}"></td>
+            <td th:text="${prov.telefono}"></td>
+            <td th:if="${prov.precioPorHora != null}" th:text="${prov.precioPorHora}"></td> <td th:if="${prov.precioPorHora == null}"> Sin Asignar</td>
+            <td th:if="${prov.categoriaServicio != null}" th:text="${prov.categoriaServicio.nombre}"></td> <td th:if="${prov.categoriaServicio == null}" >Sin Asignar</td>
+            <td>
+              <span th:if="${prov.calificacion != 0}"><span th:text="${prov.calificacion}"></span></span>
+              <span th:if="${prov.calificacion == null}">Sin calificaciones</span>
+            </td>
+            <td>
+              <a th:href= "@{/usuario/perfil/__${prov.id}__/__${prov.rol}__}"><i class="fas fa-feather-alt">  </i> Ver Perfil </a>
+            </td>
+            <td>
+              <a th:href= "@{/proveedor/modificar/__${prov.id}__}"><i class="fas fa-feather-alt">  </i> Modificar </a>
+            </td>
+            <td>
+              <a th:href= "@{/proveedor/borrar/__${prov.id}__}"><i class="fas fa-feather-alt">  </i> Borrar </a>
+            </td>
+<!--      <td th:if="${session.usuariosesion.rol.toString().equals('USER')}">-->
+<!--        <a th:href= "@{/trabajo/registrarRapido/__${prov.id}__/__${session.usuariosesion.id}__}"><i class="fas fa-feather-alt">  </i> Solicitar trabajo </a>-->
+<!--      </td>-->
+          </tr>
+        </tbody>
+      </table>
+     </div>
+
+     <div class="vista-user" th:if="${!session.usuariosesion.rol.toString().equals('ADMIN')}">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div th:each="prov : ${proveedores}"  class="col">
+
+                <div class="card shadow-sm">
+                  <div class="foto">
+                    <img th:if="${prov.imagen != null}" class="foto" th:src="@{/pictures/__${prov.imagen}__}">
+                    <img th:if="${prov.imagen == null}"  class="foto" src="https://drive.google.com/uc?id=1cmb9ITlL4Pf2AUEVMKFvTAsogeBpRKpq">
+                  </div>
+
+                  <div class="card-body">
+                    <br>
+                    <ul>
+                      <li> <b>Nombre: </b> <span th:text="${prov.nombre}"></span> </li>
+                      <li> <b>Apellido: </b><span th:text="${prov.apellido}"></span> </li>
+                      <li> <b>Email: </b><span th:text="${prov.email}"></span></li>
+                      <li> <b>Teléfono: </b><span th:text="${prov.telefono}"></span></li>
+                      <li> <b>Precio Por Hora: </b><span th:text="${prov.precioPorHora}"></span> </li>
+                      <li> <b>Categoría de Servicio: </b>
+                        <span th:if="${prov.categoriaServicio != null}" th:text="${prov.categoriaServicio.nombre}"></span>
+                        <span th:if="${prov.categoriaServicio == null}"> Sin categoría asignada</span>
+                      </li>
+                      <li> <b>Calificación Promedio: </b>
+                        <span th:if="${prov.calificacion != null}" th:text="${prov.calificacion}"></span>
+                        <span th:if="${prov.calificacion == null}" >s/c</span><br>
+                        <b>Cantidad de Calificaciones: </b><span th:if="${prov.calificacion != null}" th:text="${provServicio.cantidadCalificacionesDeUnProveedor(prov.id)}"></span>
+                        </span>
+                        <span th:if="${prov.calificacion == null}">s/c</span>
+                      </li>
+                      <li><b>Cometarios recibidos: </b>
+                        <span th:if="${provServicio.cantidadComentariosDeUnProveedor(prov.id) != 0}"><span th:text="${provServicio.cantidadComentariosDeUnProveedor(prov.id)}"></span></span>
+                        <span th:if="${provServicio.cantidadComentariosDeUnProveedor(prov.id) == 0}">s/c</span>
+                      </li>
+                    </ul>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="botones btn btn-primary margin-right=20px"><a th:href= "@{/trabajo/registrarRapido/__${prov.id}__/__${session.usuariosesion.id}__}">Solicitar trabajo </a></button>
+                      </div>
+                    <div class="btn-group">
+                        <button type="button" class="botones btn btn-primary"><a th:href= "@{/trabajo/mostrarComentarios/__${prov.id}__/}">Ver Comentarios</a></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+     </div>
+
+            <section class=" text-center container">
+              <div class="row mt-3">
+                <div class="divVolver" th:if="${session.usuariosesion != null}">
+                  <div class="divVolver">
+                     <a th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/inicio}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                  </div>
+                  <div class="divVolver">
+                    <a th:if="${!session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/iniciado/__${session.usuariosesion.id}__-__${session.usuariosesion.rol}__}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                  </div>
+                </div>
+                  <div class="divVolver" th:if="${session.usuariosesion == null}">
+                    <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                  </div>
+              </div>
+            </section>
+    </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

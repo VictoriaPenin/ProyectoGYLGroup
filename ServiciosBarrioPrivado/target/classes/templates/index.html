@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Service +</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+</head>
+
+<header th:replace="/fragments/header :: header"> </header>
+
+
+
+
+<main>
+    <div class="col-lg-12  ml-2">
+        <div class="banner-section ">
+            <img th:src="@{/imagenes/banner.jpg}" class="banner" src="../static/imagenes/banner.jpg" alt="banner">
+            <div class="banner-content text-center">
+                <h1 class="hero-title">Que puedas hacerlo, no significa que tengas que hacerlo.</h1>
+                <p class="subtitle"> Desde Service + te ponemos en contacto directo con profesionales que te ayudarán con tu hogar, local, oficina...</p>
+                <p><a class="btn btn-lg btn-primary botones" th:href="@{/registrar}" > Registrate! </a></p>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- <div id="myCarousel" class="carousel slide carousel-custom" data-bs-ride="carousel">
+         <div class="carousel-indicators">
+             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+         </div>
+         <div class="carousel-inner" >
+             <div class="carousel-item active" style="background-color: rgba(2,65,165,0.73) ;">
+                 <img class="bd-placeholder-img" src="https://drive.google.com/uc?id=1aK65g40pRarMVpNmqj3avEnygmKHCUmZ" width="180px" height="400%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                 <rect width="100%" height="400%" fill="var(--bs-secondary-color)" /></svg>
+                 <div class="container" >
+                     <div class="carousel-caption text-start" >
+                         <h1 class="textcar">Estas a un click de hacer tu vida mas simple</h1>
+                         <p></p>
+                         <!--                            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>-->
+    <!--  </div>
+  </div>
+</div>
+<div class="carousel-item" style="background-color: rgba(145,23,23,0.73);"  >
+  <div>
+      <img class="bd-placeholder-img" src="https://drive.google.com/uc?id=1G6TNR_3-Phfxvx1QxL_nG3eEqico2rz2" width="180px"  height="400%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <rect width="200%" height="400%" fill="var(--bs-secondary-color)"/></img>
+      <div class="container">
+          <div class="carousel-caption" >
+              <h1 >Si sos proveedor, ¡no pierdas mas tiempo!</h1>
+
+              <p><a class="btn btn-lg btn-primary" th:href="@{/registrar}" > Registrate! </a></p>
+          </div>
+      </div>
+  </div>
+</div>  -->
+
+    <!-- <div class="carousel-item"style="background-color:rgba(206,130,31,0.52);">
+         <img class="bd-placeholder-img" src="https://drive.google.com/uc?id=1Vh_8QWUIuyWEme8hSLkzddtluA4tAyN_"   width="200px" height="400%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+         <rect width="100%" height="400%" fill="var(--bs-secondary-color)"/>
+         <div class="container">
+             <div class="carousel-caption ">
+                 <h1 style="align-self: center">Mira los comentarios sobre los proveedores antes de elegir</h1>
+             </div>
+         </div>
+     </div>
+ </div>
+ <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+     <span class="visually-hidden">Previous</span>
+ </button>
+ <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+     <span class="visually-hidden">Next</span>
+ </button>
+</div> -->
+
+    <div class="container">
+        <div class="row featurette">
+            <h1 class="titulo">¿Que hacemos en Service +? </h1>
+
+            <div class="col-md-6 text-start ">
+
+                <p class="">Nos dedicamos a facilitar la comunicación y contratación de servicios entre los usuarios que viven en barrios cerrados y los proveedores. Sabemos lo importante que es tener acceso a profesionales confiables y de calidad, y por eso hemos creado una plataforma que simplifica este proceso.</p>
+            </div>
+            <div class="col-md-4">
+                <img th:src="@{/imagenes/inicio1.png}" class="inicio" src="../static/imagenes/inicio1.png" alt="index">
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="container">
+        <h1 class="titulo">¿Como funciona?</h1>
+        <div class="cards-wrappers">
+            <div class="demo-card item-1">
+                <div class="index-wrapper"></div>
+                <img th:src="@{/imagenes/login.png}" class="card-images" src="../static/imagenes/login.png" alt="logo">
+                <h4 class="card-title">Registrate</h4>
+                <p class="card-description">Creá tu cuenta como usuario y conocé nuestros proveedores</p>
+            </div>
+            <div class="demo-card item-2">
+                <div class="index-wrapper"></div>
+                <img th:src="@{/imagenes/search.png}" class="card-images" src="../static/imagenes/search.png" alt="logo">
+                <h4 class="card-title">Buscá</h4>
+                <p class="card-description">Buscá al profesional que se adapte a tus necesidades</p>
+            </div>
+            <div class="demo-card item-3">
+                <div class="index-wrapper"></div>
+                <img th:src="@{/imagenes/hire.png}" class="card-images" src="../static/imagenes/hire.png" alt="logo">
+                <h4 class="card-title">Contratá</h4>
+                <p class="card-description">Carga tu pedido de servicio para la fecha que necesites</p>
+            </div>
+            <div class="demo-card item-4">
+                <div class="index-wrapper"></div>
+                <img th:src="@{/imagenes/rate.png}" class="card-images" src="../static/imagenes/rate.png" alt="logo">
+                <h4 class="card-title">Calificá</h4>
+                <p class="card-description">Calificá y puntuá el trabajo realizado</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="titulo">Conocé nuestro proveedores</h1>
+        <div class="row proov">
+            <div class="col-md-5">
+                <img th:src="@{/imagenes/worker.png}" class="card-image" src="../static/imagenes/worker.png" alt="logo">
+            </div>
+            <div class="col-md-7">
+                <h2 class="listado">Listado de Proveedores</h2>
+                <p><a class="btn btn-secondary botonesp" th:href="@{/listarProveedores}">Ver Proveedores &raquo;</a></p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="container">
+        <div class="row featurette">
+            <h1 class="titulo"> Utiliza nuestra plataforma </h1>
+            <div class="col-md-6 text-start">
+                <p class=""> Nuestro objetivo es conectar de manera eficiente a los residentes de barrios cerrados con una amplia variedad de proveedores de servicios, desde plomeros y electricistas hasta jardineros y personal de limpieza. Ya no tienes que perder tiempo buscando referencias o preguntando en tu comunidad, en Service + encontrarás todo lo que necesitas en un solo lugar.</p>
+            </div>
+            <div class="col-md-4 ">
+                <img th:src="@{/imagenes/busqueda.jpg}" class="inicio" src="../static/imagenes/busqueda.jpg" alt="logo">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row featurette">
+
+            <h1 class="titulo"> Si sos proveedor, te conectamos con nuevos clientes</h1>
+            <div class="col-md-6 text-start">
+
+                <p class="">Al unirte a Service +, podrás crear un perfil completo que destaque tus habilidades, experiencia y referencias. Los usuarios podrán encontrar fácilmente tu perfil y leer las reseñas y calificaciones de otros clientes satisfechos, lo que les dará confianza en tu trabajo.</p>
+            </div>
+            <div class="col-md-4">
+                <img th:src="@{/imagenes/pintor.jpg}" class="inicio" src="../static/imagenes/pintor.jpg" alt="logo">
+
+            </div>
+        </div>
+
+
+
+        <!-- /END THE FEATURETTES -->
+
+    </div><!-- /.container -->
+
+
+    <!-- FOOTER -->
+
+    <!--    BOTON FIXED PARA VOLVER AL INICIO
+                <div style="position: fixed; bottom: 150px; right: 30px;">-->
+
+    <!--            <a href="#inicio" class="btn btn-success">Volver al Inicio</a>-->
+    <!--        </div>-->
+
+
+
+</main>
+
+
+<div class="row" id="footer" >
+
+    <footer th:replace="/fragments/footer :: footer"> </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+</html>

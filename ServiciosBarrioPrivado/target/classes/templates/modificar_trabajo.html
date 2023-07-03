@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <title>Modificar Trabajo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link th:href="@{/css/mod_usuario.css}" rel="stylesheet" />
+
+</head>
+<body>
+
+<header class="p-3 text-bg-dark">
+  <div class="header-container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <!--            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">-->
+      <!--                <img src="../static/assets/imagenes/Logo.png" alt="logo" width="100" height="90">SERVICE+-->
+      <!--            </a>-->
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a th:href="@{/}" class="nav-link px-2 text-secondary logo"><img class="img-header" src="https://drive.google.com/uc?id=17FvOE5zIHqZJNz-XgZhKY-irwDM2GeB2" alt="logo"><b class="letra">  SERVICE+</b></a></li>
+
+        <!--        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>-->
+        <!--        <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>-->
+        <!--        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>-->
+        <!--        <li><a href="#" class="nav-link px-2 text-white">About</a></li>-->
+      </ul>
+
+      <!--            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">-->
+      <!--                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">-->
+      <!--            </form>-->
+
+
+
+      <!--            <div class="text-end" sec:authorize="isAuthenticated()">-->
+      <!--                <button type="button" class="btn btn-outline-light me-2 botones"><a th:href="@{/}" class="nav-link px-2 text-secondary" style="color:#d8e3e9" >Perfil</a></button> &lt;!&ndash;TODO llenar ruta th:href="@{/}&ndash;&gt;-->
+      <!--                <button type="button" class="btn btn-warning botones"><a th:href="@{/logout}" class="nav-link px-2 text-secondary" style="color:#d8e3e9" >Cerrar Sesión</a></button>-->
+      <!--            </div>-->
+      <div class="text-end" sec:authorize!="isAuthenticated()">
+        <button type="button" class="btn btn-outline-light me-2 botones"><a th:href="@{/login}" style="color:#d8e3e9"  class="nav-link px-2 text-secondary">Iniciar Sesión</a></button>
+        <button type="button" class="btn btn-warning botones"><a th:href="@{/registrar}" style="color:#d8e3e9" class="nav-link px-2 text-secondary">Registrarse</a></button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<div class="container-fluid m-5 contenedor">
+
+  <form class="formulario" th:action="@{/trabajo/modificar/__${trabajo.id}__}"  method="POST">
+
+
+    <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+      <div class="card-body">
+        <h5 class="card-title">Error 👎</h5>
+        <p class="card-text" th:text="${error}"></p>
+      </div>
+    </div>
+    <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+      <div class="card-body">
+        <h5 class="card-title">Exito!</h5>
+        <p class="card-text" th:text="${exito}"></p>
+      </div>
+    </div>
+    <h2 class="mb-2">Modificar un Trabajo</h2>
+    <label for="fecha"> Seleccione una fecha</label>
+    <div class="form-group my-3 campo">
+      <input type="date" class="form-control" name="fecha" id="fecha" th:value="${trabajo.fecha}">
+    </div>
+    <div class="form-group my-3 seleccion">
+      <label for="categoria">Categoria</label>
+      <select name="categoria" id="categoria">
+
+
+        <option th:each="cat : ${categoriaServicio}"
+                th:value="${cat}"
+                th:text="${cat.toString()}"
+                th:selected="${trabajo.categoria == cat}"
+        >
+      </select>
+    </div>
+    <div class="form-group my-3 seleccion">
+      <label for="cliente">Cliente</label>
+      <select name="idCliente" id="cliente">
+
+
+        <option th:each="cli : ${clientes}"
+                th:value="${cli.getId()}"
+                th:text="${cli.getNombreCompleto()}"
+                th:selected="${trabajo.cliente == cli}"
+        >
+      </select>
+    </div>
+
+    <div class="form-group my-3 seleccion">
+      <label for="proveedor">Proveedor</label>
+      <select name="idProveedor" id="proveedor">
+
+        <option th:each="pro : ${proveedores}"
+                th:value="${pro.getId()}"
+                th:text="${pro.getNombreCompleto()}"
+                th:selected="${trabajo.proveedor == pro}"
+        >
+      </select>
+    </div>
+    <div class="form-group my-3 seleccion">
+      <label id="estado"> Estado Actual: </label>
+      <select name="estado">
+
+        <option th:each="est : ${estados}"
+                th:value="${est}"
+                th:text="${est.toString()}"
+                th:selected="${trabajo.estado == est}"
+        >
+      </select>
+    </div>
+    <label for="detalles"> Ingrese detalles del trabajo solicitado</label>
+    <div class="form-group my-3 campo">
+      <input type="text" class="form-control" name="detalles" id="detalles" th:value="${trabajo.detalles}">
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3 botones">Modificar</button>
+  </form>
+
+
+  <section class=" text-center container">
+    <div class="row mt-3">
+      <div class="divVolver">
+        <a th:if="${session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/inicio}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+      </div>
+      <div class="divVolver">
+        <a th:if="${!session.usuariosesion.rol.toString().equals('ADMIN')}" th:href="@{/iniciado/__${session.usuariosesion.id}__-__${session.usuariosesion.rol}__}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

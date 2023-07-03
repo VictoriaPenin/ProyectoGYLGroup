@@ -1,0 +1,7 @@
+com\grupo6\ServiciosBarrioPrivado\Enumeracion\Rol.class
+com\grupo6\ServiciosBarrioPrivado\ServiciosBarrioPrivadoApplication.class
+com\grupo6\ServiciosBarrioPrivado\Excepciones\MiException.class
+com\grupo6\ServiciosBarrioPrivado\Servicio\UsuarioServicio.class
+com\grupo6\ServiciosBarrioPrivado\Controlador\PortalControlador.class
+com\grupo6\ServiciosBarrioPrivado\Entidad\Usuario.class
+com\grupo6\ServiciosBarrioPrivado\Repositorio\UsuarioRepositorio.class
